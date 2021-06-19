@@ -81,7 +81,7 @@ Things you may want to cover:
 |postal_code    |string     |null:false        |
 |prefecture_id  |integer    |null:false        | 
 |municipality   |string     |null:false        |
-|house number   |integer    |null:false        |
+|house number   |string     |null:false        |
 |building name  |string     |                  |
 |phone number   |string     |null:false        |
 |purchase       |references |foreign_key: true |
