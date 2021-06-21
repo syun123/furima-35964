@@ -10,7 +10,9 @@ class User < ApplicationRecord
 
         #  validates :encrypted_password ,presence: true
         #  validates :encrypted_password,    length: { minimum: 6}
-         validates :encrypted_password, format: { with: /\A(?=.&#042;?[a-z])(?=.&#042;?\d)[a-z\d]+\z/i }
+        PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください' 
+
 
          validates :surname_kanji ,presence: true
          validates :name_kanji ,presence: true
