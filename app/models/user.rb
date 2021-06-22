@@ -21,14 +21,14 @@ class User < ApplicationRecord
   validates :surname_katakana
   validates :name_katakana
   validates :birthday
-  
+
   with_options format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/} do
-  validates :surname_kanji, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
-  validates :name_kanji, format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ }
+  validates :surname_kanji
+  validates :name_kanji
   end
   with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
-  validates :surname_katakana, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :name_katakana, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :surname_katakana
+  validates :name_katakana
   end
 end
   # has_many :items
