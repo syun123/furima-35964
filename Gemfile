@@ -60,5 +60,5 @@ group :development do
 end
 gem 'active_hash'
 gem 'devise'
-# gem 'mini_magick'
-# gem 'image_processing'
+gem 'mini_magick'
+gem 'image_processing'
