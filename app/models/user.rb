@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :name_katakana
   end
 end
-  # has_many :items
+  has_many :items
   # has_many :purchases
   
 end
