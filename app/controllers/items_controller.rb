@@ -19,9 +19,9 @@ class ItemsController < ApplicationController
         render :new
       end
     end
-    def show
-      @item = Item.show
-    end
+    # def show
+      # @item = Item.show
+    # end
   private
   
     def item_params
