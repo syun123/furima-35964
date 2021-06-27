@@ -16,11 +16,6 @@ class ItemsController < ApplicationController
 
   def edit
    
-    if 
-
-    else
-     
-    end
   end
 
   def update
@@ -55,5 +50,5 @@ class ItemsController < ApplicationController
   end
 end
 def move_to_index
-  return redirect_to root_path   if @item.user.id == current_user.id
+  return redirect_to root_path   if @item.user.id != current_user.id
 end
