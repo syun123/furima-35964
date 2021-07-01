@@ -2,7 +2,7 @@ window.addEventListener('load', () => {
   
 
   const priceInput = document.getElementById("item-price");
-priceInput.Listener("input", () => {
+  priceInput.addEventListener("input", () => {
   const inputValue = priceInput.value;
   
    let tax = Math.floor(inputValue * 0.1);

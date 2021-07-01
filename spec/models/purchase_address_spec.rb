@@ -15,9 +15,10 @@ describe PurchaseAddress do
       it '全ての項目の入力が存在すれば購入できること' do
         expect(@purchase).to be_valid
       end
-      # it "building_nameが存在すれば購入できること" do
-      # expect(@purchase.building_name).to be_valid
-      #  end
+       it "building_nameが空でも購入できること" do
+        @purchase.building_name = ''
+       expect(@purchase).to be_valid
+        end
     end
     context '購入ができない時' do
       it 'postal_codeがない場合は購入できないこと' do
@@ -33,11 +34,15 @@ describe PurchaseAddress do
       end
 
       it 'prefecture_idがない場合は購入できないこと' do
-        @purchase.prefecture_id = ''
+        @purchase.prefecture_id = 'nil'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture is not a number')
+        expect(@purchase.errors.full_messages).to include("Prefecture is not a number")
       end
-
+     it 'prefecture_idで1が選択された場合購入できないこと' do
+      @purchase.prefecture_id = '1'
+      @purchase.valid?
+      expect(@purchase.errors.full_messages).to include('Prefecture must be other than 1')
+     end
       it 'municipalityがない場合は購入できないこと' do
         @purchase.municipality = ''
         @purchase.valid?
@@ -50,11 +55,7 @@ describe PurchaseAddress do
         expect(@purchase.errors.full_messages).to include("House number can't be blank")
       end
 
-      #  it "building_nameがない場合は購入できないこと" do
-      # @purchase.house_number = ''
-      # @purchase.valid?
-      # expect(@purchase.errors.full_messages).to include("Image can't be blank")
-      # end
+     
 
       it 'phone_numberがない場合は購入できないこと' do
         @purchase.phone_number = ''
@@ -73,19 +74,6 @@ describe PurchaseAddress do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Phone number is invalid', 'Phone number is invalid')
       end
-
-      # context '内容に問題ない場合' do
-      # it "priceとtokenがあれば保存ができること" do
-      # expect(@purchase).to be_valid
-      # end
-      # end
-
-      # context '内容に問題がある場合' do
-      # it "priceが空では保存ができないこと" do
-      # @purchase.price = nil
-      # @purchase.valid?
-      # expect@purchase.errors.full_messages).to include("Price can't be blank")
-      # end
 
       it 'tokenが空では登録できないこと' do
         @purchase.token = nil

@@ -2,14 +2,16 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @purchase_address = PurchaseAddress.new
-
     @item = Item.find(params[:item_id])
+     if @item.purchase == nil && user_signed_in?
+    @purchase_address = PurchaseAddress.new
+   
+     else
+      redirect_to root_path
+     end
   end
 
-  def new
-    # @purchase_address = PurchaseAddress.new
-  end
+  
 
   def create
     @item = Item.find(params[:item_id])
