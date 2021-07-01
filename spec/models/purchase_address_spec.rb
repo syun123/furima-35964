@@ -39,7 +39,7 @@ describe PurchaseAddress do
         expect(@purchase.errors.full_messages).to include("Prefecture is not a number")
       end
      it 'prefecture_idで1が選択された場合購入できないこと' do
-      @purchase.prefecture_id = '1'
+      @purchase.prefecture_id = 1
       @purchase.valid?
       expect(@purchase.errors.full_messages).to include('Prefecture must be other than 1')
      end
@@ -80,6 +80,18 @@ describe PurchaseAddress do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'item_idが空だった場合購入できない'do
+      @purchase.item_id = nil
+      @purchase.valid?
+      expect(@purchase.errors.full_messages).to include("Item can't be blank")
+    end
+    it 'user_idが空だった場合購入できない'do
+    @purchase.user_id = nil
+    @purchase.valid?
+    expect(@purchase.errors.full_messages).to include("User can't be blank")
+  end
+
     end
   end
 end

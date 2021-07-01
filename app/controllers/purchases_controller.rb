@@ -1,9 +1,8 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: :index
-
+  before_action :index_create,only:[:index,:create]
   def index
-    @item = Item.find(params[:item_id])
-     if @item.purchase == nil && user_signed_in?
+     if @item.purchase == nil && current_user.id != @item.user.id 
     @purchase_address = PurchaseAddress.new
    
      else
@@ -14,7 +13,7 @@ class PurchasesController < ApplicationController
   
 
   def create
-    @item = Item.find(params[:item_id])
+    
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay_item
@@ -44,4 +43,8 @@ class PurchasesController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+end
+
+def index_create 
+  @item = Item.find(params[:item_id])
 end
